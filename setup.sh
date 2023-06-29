@@ -1,13 +1,21 @@
 #!/bin/bash
 
+# Function to retrieve machine's IP address
+get_machine_ip() {
+  local ip
+  ip=$(ifconfig eth0 | awk '/inet /{print $2}')
+  echo "$ip"
+}
+
+# Get the machine's IP address
+machine_ip=$(get_machine_ip)
+
 # Function to change SSH access by enabling password authentication
 change_ssh_access() {
   echo "Enabling password authentication for SSH access..."
   sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
   sudo service sshd restart
   echo "Password authentication enabled for SSH access."
-  # Get the machine's IP address
-  machine_ip=$(curl -s https://api.ipify.org)
   # Print the SSH access information
   echo "You can now access your server through console using:"
   echo "ssh ec2-user@$machine_ip"
