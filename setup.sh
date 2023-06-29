@@ -6,6 +6,11 @@ change_ssh_access() {
   sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
   sudo service sshd restart
   echo "Password authentication enabled for SSH access."
+  # Get the machine's IP address
+  machine_ip=$(curl -s https://api.ipify.org)
+  # Print the SSH access information
+  echo "You can now access your server through console using:"
+  echo "ssh ec2-user@$machine_ip"
 }
 
 # Change root password
