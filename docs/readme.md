@@ -24,11 +24,11 @@ This script automates the setup process for an Amazon Linux 2 instance, allowing
 2. Download the `setup.sh` script to your instance.
 3. Make the script executable by running the following command:
 
-chmod +x setup.sh
+`chmod +x setup.sh`
 
 4. Run the script as root or with sudo privileges:
 
-sudo ./setup.sh
+`sudo ./setup.sh`
 
 5. Follow the prompts to change passwords, create a new sudo user, install GitHub CLI (gh), and enable password authentication for SSH access.
 
